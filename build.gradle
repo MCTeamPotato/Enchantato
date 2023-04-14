@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0.0'
+version = game_version + "-" + mod_version
 group = 'com.teampotato.enchantato'
 archivesBaseName = 'enchantato'
 
