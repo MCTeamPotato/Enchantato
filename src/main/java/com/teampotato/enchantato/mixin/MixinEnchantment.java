@@ -1,7 +1,7 @@
 package com.teampotato.enchantato.mixin;
 
 import com.teampotato.enchantato.Enchantato;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,11 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
+
 @Mixin(value = Enchantment.class, remap = false)
-public class MixinEnchantment {
+public abstract class MixinEnchantment {
     @Inject(method = "canApplyAtEnchantingTable", at = @At("HEAD"), cancellable = true)
     private void banEnchantments(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (Enchantato.ENCHANTMENT_LIST.get().contains(Objects.requireNonNull(BuiltInRegistries.ENCHANTMENT.getKey((Enchantment)((Object)this))).toString())) {
+        if (Enchantato.ENCHANTMENT_LIST.get().contains(Objects.requireNonNull(Registry.ENCHANTMENT.getKey((Enchantment) ((Object) this))).toString())) {
             cir.setReturnValue(false);
             cir.cancel();
         }
