@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(EnchantRandomlyFunction.class)
 public abstract class MixinEnchantRandomlyFunction {
     @Dynamic
-    @Redirect(method = {"method_26267", "lambda$run$0", "func_237421_a_"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/Enchantment;canEnchant(Lnet/minecraft/world/item/ItemStack;)Z"))
+    @Redirect(method = {"method_26267", "lambda$run$0", "m_80433_"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/Enchantment;canEnchant(Lnet/minecraft/world/item/ItemStack;)Z"))
     private static boolean onEnchant(Enchantment instance, ItemStack arg) {
         if (Enchantato.ENCHANTMENT_LIST.get().contains(instance.getRegistryName().toString())) return false;
         return instance.canEnchant(arg);
