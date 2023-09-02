@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(AnvilMenu.class)
 public abstract class MixinAnvilMenu {
     @Redirect(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/Enchantment;canEnchant(Lnet/minecraft/world/item/ItemStack;)Z"))
-    private static boolean onEnchant(Enchantment instance, ItemStack arg) {
+    private boolean onEnchant(Enchantment instance, ItemStack arg) {
         if (Enchantato.ENCHANTMENT_LIST.get().contains(instance.getRegistryName().toString())) return false;
         return instance.canEnchant(arg);
     }

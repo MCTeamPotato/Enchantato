@@ -1,6 +1,6 @@
 package com.teampotato.enchantato;
 
-import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -19,8 +19,8 @@ public class Enchantato {
 
     static {
         ForgeConfigSpec.Builder CONFIG_BUILDER = new ForgeConfigSpec.Builder();
-        CONFIG_BUILDER.comment("Enchantato").push("General");
-        ENCHANTMENT_LIST = CONFIG_BUILDER.defineList("enchantments that will be forbidden", Lists.newArrayList(), o -> o instanceof String);
+        CONFIG_BUILDER.push("Enchantato");
+        ENCHANTMENT_LIST = CONFIG_BUILDER.defineList("DisabledEnchantments", new ObjectArrayList<>(), o -> o instanceof String);
         CONFIG_BUILDER.pop();
         COMMON_CONFIG = CONFIG_BUILDER.build();
     }
