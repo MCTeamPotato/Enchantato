@@ -13,7 +13,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class MixinEnchantmentHelper {
     @Redirect(method = "getAvailableEnchantmentResults", at = @At(value = "INVOKE", remap = false, target = "Lnet/minecraft/world/item/enchantment/Enchantment;canApplyAtEnchantingTable(Lnet/minecraft/world/item/ItemStack;)Z"))
     private static boolean onGetEnchantments(Enchantment instance, ItemStack stack) {
-        if (Enchantato.ENCHANTMENT_LIST.get().contains(instance.getRegistryName().toString())) return false;
-        return instance.canApplyAtEnchantingTable(stack);
+        if (!Enchantato.INVERTED_MODE.get()) {
+            if (Enchantato.ENCHANTMENT_LIST.get().contains(instance.getRegistryName().toString())) return false;
+            return instance.canApplyAtEnchantingTable(stack);
+        } else {
+            return instance.canApplyAtEnchantingTable(stack) && Enchantato.ENCHANTMENT_LIST.get().contains(instance.getRegistryName().toString());
+        }
     }
 }
