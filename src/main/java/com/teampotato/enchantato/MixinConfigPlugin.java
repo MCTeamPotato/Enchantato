@@ -53,10 +53,10 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
     @NotNull
     private static FileWriter writeFile(File configFile) throws IOException {
         JsonObject defaultConfig = new JsonObject();
-        defaultConfig.addProperty("disableAnvilUsage", true);
-        defaultConfig.addProperty("disableEnchantCommandUsage", true);
-        defaultConfig.addProperty("disableEnchantmentTableUsage", true);
-        defaultConfig.addProperty("disableLootUsage", true);
+        defaultConfig.addProperty("disable usage in anvil, enchantment table or any other block container", true);
+        defaultConfig.addProperty("disable usage in /enchant command", true);
+        defaultConfig.addProperty("disable usage in enchantment table, villager trade, entities spawning and loot generation (This mixin is more rooted)", true);
+        defaultConfig.addProperty("disable usage in loot generation", true);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileWriter writer = new FileWriter(configFile);
